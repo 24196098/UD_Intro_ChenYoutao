@@ -100,25 +100,103 @@ class WallE:
         self.turn_right()
         pass
 
+        
 
 # These are the 5 functions you have to fill in
     def walk_back_and_forth(self):
-        self.move()
-        self.TURN_BACK()
+        if not self.check_wall():
+            self.move()
+        else:
+            self.TURN_BACK()
+            self.move()
+        self.action = False
         
         pass #Remove this and fill with your own code
 
     def walk_a_lap(self):
+        for i in range(4): 
+            if not self.check_wall(): 
+                self.move()  
+            else:
+                self.turn_right()
+                self.move()
+                i += 1
+            self.action = False
+                
         pass #Remove this and fill with your own code
 
     def find_the_box(self):
+        import random
+        if not self.check_wall():
+            random_action = random.choice(["move", "turn_left", "turn_right"])
+            if random_action == "move": 
+                self.move()
+            elif random_action == "turn_left":
+                self.turn_left()
+                if not self.check_wall():
+                    self.move()
+            elif random_action == "turn_right":
+                self.turn_right()
+                if not self.check_wall():
+                    self.move()    
+        else:
+            random_action = random.choice(["turn_left", "turn_right"])
+            if random_action == "turn_left":
+                self.turn_left()
+            else:
+                self.turn_right()
+                
+            if not self.check_wall():
+                self.move() 
+        
+        if self.check_on_box():
+            self.pick_up_box()
+            
+        self.action = False
         pass #Remove this and fill with your own code
 
     def swap_all_boxes(self):
-        pass #Remove this and fill with your own code
+            import random
+            if not self.check_wall():
+                random_action = random.choice(["move", "turn_left", "turn_right"])
+                if random_action == "move": 
+                    self.move()
+                elif random_action == "turn_left":
+                    self.turn_left()
+                    if not self.check_wall:
+                        self.move()
+                elif random_action == "turn_right":
+                    self.turn_right()
+                    if not self.check_wall:
+                        self.move()    
+            else:
+                random_action = random.choice(["turn_left", "turn_right"])
+                if random_action == "turn_left":
+                    self.turn_left()
+                else:
+                    self.turn_right()
+                    
+                if not self.check_wall():
+                    self.move() 
+                    
+            if self.check_on_box():
+                self.pick_up_box()
+            else:
+                self.drop_box()    
+                
+            self.action = False
+    pass #Remove this and fill with your own code
 
     def CHECK_ON_WALL(self):
         pass #Remove this and fill with your own code
 
     def walk_around_obstacle(self):
-        pass #Remove this and fill with your own code
+        if not self.check_wall():
+            self.move()
+        else:
+            self.turn_right()
+            self.move()
+            
+        self.action = False
+        
+    pass #Remove this and fill with your own code
